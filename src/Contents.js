@@ -3,18 +3,37 @@ import { useState } from "react";
 
 const Contents = () => {
 
-     const [name, setName] = useState("Naveen");
-
-     const handleNameChange = () => {
-         const names = ["Naveen", "RP", "Mani"];
-         const int = Math.floor(Math.random()*3);
-         setName(names[int]);
-     }
+    const [items, setItems] = useState(
+        [
+            {
+                id:1,
+                checked:true,
+                item:"Do exercise"
+            },
+            {
+                id:2,
+                checked:true,
+                item:"Learn React"
+            },
+            {
+                id:3,
+                checked:true,
+                item:"Eat lunch"
+            }
+        ]
+    )
 
     return (
         <main>
-            <p> Lets {name} Money  </p>
-            <button onClick={handleNameChange}> Subscribe </button>
+            <ul>
+                {items.map((item) => (
+                    <li>
+                        <input type="checkbox" checked={item.checked} />
+                        <label>{item.item}</label>
+                        <button>Delete</button>
+                    </li>
+                ))}
+            </ul>
         </main>
     )
 
