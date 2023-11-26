@@ -2,17 +2,19 @@ import React, { useState } from 'react'
 
 
 
-const Header = () => {
-
+const Header = (props) => {
   
   return (
     <header>
-      <h1>To Do List</h1>
+      <h1>{props.title}</h1>
     </header>
     
   )
 }
 
+Header.defaultProp = {
+  title: "To do list from default prop"
+}
 
 /* function button() {
 

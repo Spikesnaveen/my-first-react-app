@@ -1,12 +1,9 @@
-1. go to npm website (https://www.npmjs.com/)
+***Props***
+In React, "props" is short for "properties," and it is a special keyword that is used to pass data from a parent component to a child component
 
-2. search 'react-icons'
+Props are immutable, meaning that a child component cannot modify the values it receives via props. They are read-only
 
-3. copy 'npm install react-icons --save' and run in terminal
-        (This will install react-icons package into your project. Under react-icons you can find multiple dependencies as a components inside it. In this example we are going to use react-icons to get delete icon)
+![Alt text](image.png)
+In this example, the ParentComponent has a variable data, and it passes this data as a prop to ChildComponent using the syntax message={data}. In the ChildComponent, the value of the prop is accessed using props.message and then displayed in the JSX.
 
-4. import { BsFillTrashFill } from "react-icons/bs"; 
-        (In my case, I am going to use 'BsFillTrashFill' component)
-
-5. use <BsFillTrashFill/> whereever u wanted to use
-
+Props are a fundamental concept in React, and they facilitate the flow of data in a React application by allowing components to communicate with each other. They make it possible to create reusable and configurable components.
