@@ -1,20 +1,16 @@
-import React, { useState } from 'react'
-
-
+import React from "react";
 
 const Header = (props) => {
-  
   return (
     <header>
       <h1>{props.title}</h1>
     </header>
-    
-  )
-}
+  );
+};
 
 Header.defaultProp = {
-  title: "To do list from default prop"
-}
+  title: "To do list from default prop",
+};
 
 /* function button() {
 
