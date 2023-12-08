@@ -1,3 +1,4 @@
+import AddItem from "./AddItem";
 import Contents from "./Contents";
 import Footer from "./Footer";
 import Header from "./Header";
@@ -23,6 +24,8 @@ function App() {
     },
   ]);
 
+  const [newItem, setNewItem] = useState('');
+
   const handleChecked = (id) => {
     const itemsUpdated = items.map((item) =>
       item.id === id ? { ...item, checked: !item.checked } : item
@@ -37,9 +40,22 @@ function App() {
     localStorage.setItem("todo_list", JSON.stringify(itemsDeleted));
   };
 
+  const handleSubmitItem = (item) => {
+    console.log("Inside handleSubmitItem")
+    console.log(item)
+    setItems( (prevItems) => 
+      [...prevItems, {id: prevItems.length+1, checked:false, item}]
+      );
+  }
+
   return (
     <div className="App">
       <Header title="To Do List" />
+      <AddItem
+        newItem={newItem}
+        setNewItem={setNewItem}
+        handleSubmitItem={handleSubmitItem}
+      />
       <Contents
         items={items}
         handleChecked={handleChecked}

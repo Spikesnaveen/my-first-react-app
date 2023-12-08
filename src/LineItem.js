@@ -1,5 +1,6 @@
 import React from "react";
 import { BsFillTrashFill } from "react-icons/bs";
+import "./index.css";
 
 const LineItem = ({item, handleChecked, handleDelete}) => {
   return (
