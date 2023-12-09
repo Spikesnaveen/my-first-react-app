@@ -2,29 +2,17 @@ import AddItem from "./AddItem";
 import Contents from "./Contents";
 import Footer from "./Footer";
 import Header from "./Header";
+import SearchItem from "./SearchItem";
 import "./index.css";
 import { useState } from "react";
 
 function App() {
-  const [items, setItems] = useState([
-    {
-      id: 1,
-      checked: true,
-      item: "Do exercise",
-    },
-    {
-      id: 2,
-      checked: true,
-      item: "Learn React",
-    },
-    {
-      id: 3,
-      checked: true,
-      item: "Eat lunch",
-    },
-  ]);
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem("todo_list"))
+  );
 
   const [newItem, setNewItem] = useState('');
+
+  const [searchTerm, setSearchTerm] = useState('');
 
   const handleChecked = (id) => {
     const itemsUpdated = items.map((item) =>
@@ -40,12 +28,19 @@ function App() {
     localStorage.setItem("todo_list", JSON.stringify(itemsDeleted));
   };
 
-  const handleSubmitItem = (item) => {
-    console.log("Inside handleSubmitItem")
-    console.log(item)
-    setItems( (prevItems) => 
-      [...prevItems, {id: prevItems.length+1, checked:false, item}]
-      );
+  const handleSubmitItem = (e) => {
+    e.preventDefault()
+    console.log(newItem)
+    //setItems( (prevItems) => 
+     // [...prevItems, {id: prevItems.length+1, checked:false, newItem}]
+     // );
+     const item = {
+      id:items.length+1, checked:false, item:newItem
+     }
+    const updatedItems = [...items, item]
+    setNewItem('')
+    setItems(updatedItems)
+    localStorage.setItem("todo_list", JSON.stringify(updatedItems));
   }
 
   return (
@@ -56,8 +51,12 @@ function App() {
         setNewItem={setNewItem}
         handleSubmitItem={handleSubmitItem}
       />
+      <SearchItem
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
       <Contents
-        items={items}
+        items={items.filter(item => ((item.item).toLowerCase()).includes(searchTerm.toLowerCase()))}
         handleChecked={handleChecked}
         handleDelete={handleDelete}
       />
