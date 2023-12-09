@@ -1,23 +1,20 @@
 import React from "react";
-import { useState } from "react";
+import { ItemsList } from "./ItemsList";
 
-const Contents = () => {
-
-     const [name, setName] = useState("Naveen");
-
-     const handleNameChange = () => {
-         const names = ["Naveen", "RP", "Mani"];
-         const int = Math.floor(Math.random()*3);
-         setName(names[int]);
-     }
-
-    return (
-        <main>
-            <p> Lets {name} Money  </p>
-            <button onClick={handleNameChange}> Subscribe </button>
-        </main>
-    )
-
-}
+const Contents = ({ items, handleChecked, handleDelete }) => {
+  return (
+    <main>
+      {items.length ? (
+        <ItemsList
+          items={items}
+          handleChecked={handleChecked}
+          handleDelete={handleDelete}
+        />
+      ) : (
+        <p> Your List is empty</p>
+      )}
+    </main>
+  );
+};
 
 export default Contents;
