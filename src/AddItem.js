@@ -4,7 +4,7 @@ import "./index.css";
 
 const AddItem = ({newItem,setNewItem,handleSubmitItem}) => {
   return (
-    <form className="addForm">
+    <form className="addForm" onSubmit={(e) => handleSubmitItem(e)}>
         <label htmlFor="addItem">Add Item</label>
         <input
             autoFocus
@@ -17,8 +17,7 @@ const AddItem = ({newItem,setNewItem,handleSubmitItem}) => {
         />
         <button type="submit">
             <FaPlus
-            role="button"
-            onClick={() => handleSubmitItem(newItem)}/>
+            role="button"/>
         </button>
     </form>
   )
