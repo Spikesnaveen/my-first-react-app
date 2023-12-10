@@ -4,31 +4,36 @@ import Footer from "./Footer";
 import Header from "./Header";
 import SearchItem from "./SearchItem";
 import "./index.css";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
-  const [items, setItems] = useState(JSON.parse(localStorage.getItem("todo_list"))
-  );
+  const [items, setItems] = useState(JSON.parse(localStorage.getItem("todo_list")) || []);
 
   const [newItem, setNewItem] = useState('');
 
   const [searchTerm, setSearchTerm] = useState('');
 
+  useEffect( () => {
+    console.log("Inside use effect")
+    localStorage.setItem("todo_list", JSON.stringify(items));
+  }, [items])
+
   const handleChecked = (id) => {
+    console.log("Inside handle checked")
     const itemsUpdated = items.map((item) =>
       item.id === id ? { ...item, checked: !item.checked } : item
     );
     setItems(itemsUpdated);
-    localStorage.setItem("todo_list", JSON.stringify(itemsUpdated));
   };
 
   const handleDelete = (id) => {
+    console.log("Inside handle delete")
     const itemsDeleted = items.filter((item) => item.id !== id);
     setItems(itemsDeleted);
-    localStorage.setItem("todo_list", JSON.stringify(itemsDeleted));
   };
 
   const handleSubmitItem = (e) => {
+    console.log("Inside handle submit item")
     e.preventDefault()
     console.log(newItem)
     //setItems( (prevItems) => 
@@ -40,7 +45,6 @@ function App() {
     const updatedItems = [...items, item]
     setNewItem('')
     setItems(updatedItems)
-    localStorage.setItem("todo_list", JSON.stringify(updatedItems));
   }
 
   return (
